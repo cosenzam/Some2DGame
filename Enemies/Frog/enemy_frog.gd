@@ -19,7 +19,11 @@ func _physics_process(delta):
 	
 	# Gravity and air deceleration
 	if not is_on_floor():
-		velocity.y += gravity * delta
+		var yVelocityTmp = velocity.y + (gravity * delta)
+		if yVelocityTmp >= 250:
+			velocity.y = 250
+		else:
+			velocity.y += gravity * delta
 		if velocity.x > 0:
 			velocity.x += xNegDeceleration * delta
 		elif velocity.x < 0:

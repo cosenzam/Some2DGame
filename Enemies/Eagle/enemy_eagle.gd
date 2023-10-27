@@ -29,11 +29,12 @@ func _physics_process(delta):
 	time += delta
 	if not chase:
 		if not is_on_floor():
-			# max falling velocity
-			if velocity.y > yPosMaxVelocity:
+			var yVelocityTmp = velocity.y + (gravity * delta)
+			if yVelocityTmp >= yPosMaxVelocity:
 				velocity.y = yPosMaxVelocity
-			# Gravity scaled
-			velocity.y += gravity * gravityScale * delta
+			else:
+				# Gravity scaled
+				velocity.y += gravity * gravityScale * delta
 		
 		EnemyActions.patrol()
 	else:

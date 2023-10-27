@@ -18,16 +18,17 @@ func _physics_process(delta):
 	#if velocity.y > max:
 		#max = velocity.y
 	
-	
 	# Track player position in global variable
 	globalVars.set_player_position(self)
 	
 	# Add the gravity.
 	if not is_on_floor() and inputEnabled:
 		# max y velocity
-		if velocity.y > 250:
+		var yVelocityTmp = velocity.y + (gravity * delta)
+		if yVelocityTmp >= 250:
 			velocity.y = 250
-		velocity.y += gravity * delta
+		else:
+			velocity.y += gravity * delta
 		if velocity.y < 0:
 			$AnimatedSprite2D.play("jump")
 		else:
