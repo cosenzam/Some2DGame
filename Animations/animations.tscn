@@ -1,0 +1,99 @@
+[gd_scene load_steps=14 format=3 uid="uid://b05fby7dbyghy"]
+
+[ext_resource type="Texture2D" uid="uid://bn8tut0jt4t07" path="res://SunnyLandAssets/sprites/enemy-death/enemy-death-1.png" id="1_72lhc"]
+[ext_resource type="Texture2D" uid="uid://jcesptlte214" path="res://SunnyLandAssets/sprites/enemy-death/enemy-death-2.png" id="2_q76ph"]
+[ext_resource type="Texture2D" uid="uid://c1eqbtakdd7qb" path="res://SunnyLandAssets/sprites/enemy-death/enemy-death-3.png" id="3_xxfav"]
+[ext_resource type="Texture2D" uid="uid://b7o4o8f03mmbi" path="res://SunnyLandAssets/sprites/enemy-death/enemy-death-4.png" id="4_aj1u6"]
+[ext_resource type="Texture2D" uid="uid://drcki5ugr37ch" path="res://SunnyLandAssets/sprites/enemy-death/enemy-death-5.png" id="5_mxluy"]
+[ext_resource type="Texture2D" uid="uid://ckqhedy570t61" path="res://SunnyLandAssets/sprites/enemy-death/enemy-death-6.png" id="6_8lw5o"]
+[ext_resource type="Texture2D" uid="uid://dk3jsr32bq57w" path="res://SunnyLandAssets/sprites/item-feedback/item-feedback-1.png" id="7_6bpt0"]
+[ext_resource type="Texture2D" uid="uid://c4on7g6dpow3v" path="res://SunnyLandAssets/sprites/player/hurt/player-hurt-1.png" id="7_gfq25"]
+[ext_resource type="Texture2D" uid="uid://blksypf0burd4" path="res://SunnyLandAssets/sprites/player/hurt/player-hurt-2.png" id="8_ni7bx"]
+[ext_resource type="Texture2D" uid="uid://btvrs6ebl12ml" path="res://SunnyLandAssets/sprites/item-feedback/item-feedback-2.png" id="8_ydsgj"]
+[ext_resource type="Texture2D" uid="uid://cxr8b1u48k723" path="res://SunnyLandAssets/sprites/item-feedback/item-feedback-3.png" id="9_s37br"]
+[ext_resource type="Texture2D" uid="uid://chlsfubngniq4" path="res://SunnyLandAssets/sprites/item-feedback/item-feedback-4.png" id="10_lhumd"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_5llm1"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_72lhc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_q76ph")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_xxfav")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_aj1u6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_mxluy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_8lw5o")
+}],
+"loop": false,
+"name": &"enemy_death",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_6bpt0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_ydsgj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_s37br")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_lhumd")
+}],
+"loop": false,
+"name": &"item_collected",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_gfq25")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_ni7bx")
+}, {
+"duration": 1.0,
+"texture": null
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_gfq25")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_ni7bx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("1_72lhc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_q76ph")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_xxfav")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_aj1u6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_mxluy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_8lw5o")
+}],
+"loop": false,
+"name": &"player_death",
+"speed": 5.0
+}]
+
+[node name="Animations" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_5llm1")
+animation = &"item_collected"

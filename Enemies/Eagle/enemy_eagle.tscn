@@ -1,0 +1,75 @@
+[gd_scene load_steps=10 format=3 uid="uid://u5rsmtckc7fh"]
+
+[ext_resource type="Script" path="res://Enemies/Eagle/enemy_eagle.gd" id="1_d62g7"]
+[ext_resource type="Texture2D" uid="uid://bc7sfl83pol4g" path="res://SunnyLandAssets/sprites/eagle/eagle-attack-1.png" id="1_xyir7"]
+[ext_resource type="Texture2D" uid="uid://q0wd6uj1orek" path="res://SunnyLandAssets/sprites/eagle/eagle-attack-2.png" id="2_nyu45"]
+[ext_resource type="Texture2D" uid="uid://bwghsiq58sj30" path="res://SunnyLandAssets/sprites/eagle/eagle-attack-3.png" id="3_qbq1l"]
+[ext_resource type="Texture2D" uid="uid://cuyd7ux4qwxip" path="res://SunnyLandAssets/sprites/eagle/eagle-attack-4.png" id="4_0y7fx"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_dsah6"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_xyir7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_nyu45")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_qbq1l")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_0y7fx")
+}],
+"loop": true,
+"name": &"patrol",
+"speed": 8.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_inqhy"]
+size = Vector2(4, 3)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nk5ft"]
+size = Vector2(32, 11)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e51cc"]
+size = Vector2(26, 11.5)
+
+[node name="Enemy_Eagle" type="CharacterBody2D"]
+script = ExtResource("1_d62g7")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(3.915, -8.4)
+sprite_frames = SubResource("SpriteFrames_dsah6")
+animation = &"patrol"
+frame = 3
+frame_progress = 0.137976
+
+[node name="Collision" type="CollisionShape2D" parent="."]
+position = Vector2(0, 8.5)
+shape = SubResource("RectangleShape2D_inqhy")
+
+[node name="Hitbox" type="Area2D" parent="."]
+
+[node name="HitboxShape" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2(0, 5)
+shape = SubResource("RectangleShape2D_nk5ft")
+
+[node name="Hurtbox" type="Area2D" parent="."]
+
+[node name="HurtboxShape" type="CollisionShape2D" parent="Hurtbox"]
+position = Vector2(0, -6.25)
+shape = SubResource("RectangleShape2D_e51cc")
+
+[node name="Aggro" type="Area2D" parent="."]
+
+[node name="AggroShape" type="CollisionPolygon2D" parent="Aggro"]
+position = Vector2(0, 0.1875)
+scale = Vector2(15, 15)
+polygon = PackedVector2Array(0, 0, -10, 10, 10, 10)
+
+[connection signal="tree_entered" from="." to="." method="_on_tree_entered"]
+[connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]
+[connection signal="body_entered" from="Hurtbox" to="." method="_on_hurtbox_body_entered"]
+[connection signal="body_entered" from="Aggro" to="." method="_on_aggro_body_entered"]
+[connection signal="body_exited" from="Aggro" to="." method="_on_aggro_body_exited"]

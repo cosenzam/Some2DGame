@@ -1,0 +1,106 @@
+[gd_scene load_steps=18 format=3 uid="uid://c8cadc72uehgu"]
+
+[ext_resource type="Script" path="res://Enemies/Opossum/enemy_opossum.gd" id="1_dqlof"]
+[ext_resource type="Texture2D" uid="uid://bn8tut0jt4t07" path="res://SunnyLandAssets/sprites/enemy-death/enemy-death-1.png" id="1_pib7s"]
+[ext_resource type="Texture2D" uid="uid://jcesptlte214" path="res://SunnyLandAssets/sprites/enemy-death/enemy-death-2.png" id="2_asmpp"]
+[ext_resource type="Texture2D" uid="uid://c1eqbtakdd7qb" path="res://SunnyLandAssets/sprites/enemy-death/enemy-death-3.png" id="3_d3fk6"]
+[ext_resource type="Texture2D" uid="uid://b7o4o8f03mmbi" path="res://SunnyLandAssets/sprites/enemy-death/enemy-death-4.png" id="4_dtt0f"]
+[ext_resource type="Texture2D" uid="uid://drcki5ugr37ch" path="res://SunnyLandAssets/sprites/enemy-death/enemy-death-5.png" id="5_opbis"]
+[ext_resource type="Texture2D" uid="uid://ckqhedy570t61" path="res://SunnyLandAssets/sprites/enemy-death/enemy-death-6.png" id="6_7ro45"]
+[ext_resource type="Texture2D" uid="uid://dey4o1jumr6bd" path="res://SunnyLandAssets/sprites/opossum/opossum-1.png" id="7_kvaf6"]
+[ext_resource type="Texture2D" uid="uid://dpctxaj1rb6en" path="res://SunnyLandAssets/sprites/opossum/opossum-2.png" id="8_4icou"]
+[ext_resource type="Texture2D" uid="uid://fdtas11vrhwj" path="res://SunnyLandAssets/sprites/opossum/opossum-3.png" id="9_ymfqx"]
+[ext_resource type="Texture2D" uid="uid://cy67j7e6e7e04" path="res://SunnyLandAssets/sprites/opossum/opossum-4.png" id="10_6fbpf"]
+[ext_resource type="Texture2D" uid="uid://buudme07r1pvp" path="res://SunnyLandAssets/sprites/opossum/opossum-5.png" id="11_u6gpv"]
+[ext_resource type="Texture2D" uid="uid://t0jwwil1bcku" path="res://SunnyLandAssets/sprites/opossum/opossum-6.png" id="12_so0so"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_k10dj"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_pib7s")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_asmpp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_d3fk6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_dtt0f")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_opbis")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_7ro45")
+}],
+"loop": false,
+"name": &"death",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_kvaf6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_4icou")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_ymfqx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_6fbpf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_u6gpv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_so0so")
+}],
+"loop": true,
+"name": &"patrol",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3yq22"]
+size = Vector2(20, 7)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3uipy"]
+size = Vector2(40, 11)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4boc6"]
+size = Vector2(30, 12)
+
+[node name="Enemy_Opossum" type="CharacterBody2D"]
+collision_layer = 3
+collision_mask = 3
+script = ExtResource("1_dqlof")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -3)
+sprite_frames = SubResource("SpriteFrames_k10dj")
+animation = &"patrol"
+frame = 4
+frame_progress = 0.247572
+
+[node name="Collision" type="CollisionShape2D" parent="."]
+position = Vector2(0, 7.47)
+shape = SubResource("RectangleShape2D_3yq22")
+
+[node name="Hitbox" type="Area2D" parent="."]
+position = Vector2(0, 12)
+
+[node name="HitboxShape" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2(0, -4.5)
+shape = SubResource("RectangleShape2D_3uipy")
+
+[node name="Hurtbox" type="Area2D" parent="."]
+
+[node name="HurtboxShape" type="CollisionShape2D" parent="Hurtbox"]
+position = Vector2(0, -4)
+shape = SubResource("RectangleShape2D_4boc6")
+
+[connection signal="tree_entered" from="." to="." method="_on_tree_entered"]
+[connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]
+[connection signal="body_entered" from="Hurtbox" to="." method="_on_hurtbox_body_entered"]

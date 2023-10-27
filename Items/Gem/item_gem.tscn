@@ -1,0 +1,44 @@
+[gd_scene load_steps=9 format=3 uid="uid://b4dwo35biohdq"]
+
+[ext_resource type="Script" path="res://Items/Gem/item_gem.gd" id="1_2d8l0"]
+[ext_resource type="Texture2D" uid="uid://bo2y1jvuwluky" path="res://SunnyLandAssets/sprites/gem/gem-1.png" id="1_vdjya"]
+[ext_resource type="Texture2D" uid="uid://butrb0vnfxqn2" path="res://SunnyLandAssets/sprites/gem/gem-2.png" id="2_w6igc"]
+[ext_resource type="Texture2D" uid="uid://dxwlc47vftdce" path="res://SunnyLandAssets/sprites/gem/gem-3.png" id="3_r0pfo"]
+[ext_resource type="Texture2D" uid="uid://402o8ovo8phx" path="res://SunnyLandAssets/sprites/gem/gem-4.png" id="4_cy2kp"]
+[ext_resource type="Texture2D" uid="uid://bhhxmgcdmk3f3" path="res://SunnyLandAssets/sprites/gem/gem-5.png" id="5_6s3y5"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ofxki"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_vdjya")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_w6igc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_r0pfo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_cy2kp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_6s3y5")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ip7gs"]
+
+[node name="Item_Gem" type="Area2D"]
+script = ExtResource("1_2d8l0")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_ofxki")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_ip7gs")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

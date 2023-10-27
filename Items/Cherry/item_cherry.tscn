@@ -1,0 +1,55 @@
+[gd_scene load_steps=11 format=3 uid="uid://bcsr102ocqai1"]
+
+[ext_resource type="Texture2D" uid="uid://641s0q1haodi" path="res://SunnyLandAssets/sprites/cherry/cherry-1.png" id="1_51kj4"]
+[ext_resource type="Script" path="res://Items/Cherry/item_cherry.gd" id="1_0227w"]
+[ext_resource type="Texture2D" uid="uid://coi6060sxi1n2" path="res://SunnyLandAssets/sprites/cherry/cherry-2.png" id="2_ku0nx"]
+[ext_resource type="Texture2D" uid="uid://bv4c0b62u6duq" path="res://SunnyLandAssets/sprites/cherry/cherry-3.png" id="3_13wko"]
+[ext_resource type="Texture2D" uid="uid://dd55olkvlft41" path="res://SunnyLandAssets/sprites/cherry/cherry-4.png" id="4_i7084"]
+[ext_resource type="Texture2D" uid="uid://ctsai503nww38" path="res://SunnyLandAssets/sprites/cherry/cherry-5.png" id="5_elatt"]
+[ext_resource type="Texture2D" uid="uid://cmexvvp4bjqf8" path="res://SunnyLandAssets/sprites/cherry/cherry-6.png" id="6_0a4dq"]
+[ext_resource type="Texture2D" uid="uid://dqlu5qp021xev" path="res://SunnyLandAssets/sprites/cherry/cherry-7.png" id="7_c6c6b"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_d1tcv"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_51kj4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_ku0nx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_13wko")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_i7084")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_elatt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_0a4dq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_c6c6b")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_n5rkn"]
+
+[node name="Item_Cherry" type="Area2D"]
+collision_layer = 4
+collision_mask = 4
+script = ExtResource("1_0227w")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0.76, 0)
+sprite_frames = SubResource("SpriteFrames_d1tcv")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_n5rkn")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
